@@ -20,38 +20,25 @@ const tyrion = {
     image: './images/tyrion.jpeg'
 }
 const characters = [jon, cersei, daenerys, sansa, tyrion]
-//dom vars
-const section = document.querySelector('section')
+
+// nodos
+
 const button = document.querySelector('button')
+const image = document.querySelector('img')
+const name = document.querySelector('h2')
 
+const chooseCharacter = () => {
 
-const getRandomCharacter = () => {
-    // get a random character and put it on the throne every second
     const interval = setInterval(() => {
-        //remove previous image and text
-        const currentImage = document.querySelector('img')
-        const currentName = document.querySelector('h2')
-        section.removeChild(currentImage)
-        section.removeChild(currentName)
-        //choose a character randomly
         const character = Math.floor(Math.random() * characters.length)
-        //creating the image and text
-        const img = document.createElement('img')
-        img.src = characters[character].image
-        const name = document.createElement('h2')
+        image.src = characters[character].image
         name.innerText = characters[character].name
+    }, 500)
 
-        //inserting them into the dom
-        section.appendChild(img)
-        section.appendChild(name)
-    }, 100)
     setTimeout(() => {
         clearInterval(interval)
-        const winner = document.querySelector('img')
-        winner.classList.add('winner')
+        image.classList.add('winner')
     }, 3000)
 }
 
-button.onclick = getRandomCharacter
-
-
+button.onclick = chooseCharacter
